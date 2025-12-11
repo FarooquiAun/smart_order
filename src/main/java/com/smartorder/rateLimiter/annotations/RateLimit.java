@@ -10,4 +10,5 @@ import java.lang.annotation.Target;
 public @interface RateLimit {
     int limit();
     int durationSeconds();
+    String algorithm() default "token";
 }

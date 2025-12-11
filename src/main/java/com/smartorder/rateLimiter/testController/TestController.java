@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestController {
 
-    @RateLimit(limit = 5,durationSeconds = 5)
-    @GetMapping("/hello")
+    @RateLimit(limit = 10,durationSeconds = 60)
+    @GetMapping("/v1/token-test")
     public String hello(){
         return "Hello World";
     }
+    @RateLimit(limit = 5, durationSeconds = 10, algorithm = "sliding-redis")
+    @GetMapping("/v1/redis-test")
+    public String redisTest() {
+        return "Redis Sliding Window Works!";
+    }
+
 }
